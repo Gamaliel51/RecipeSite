@@ -1,11 +1,32 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Courgette } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import DishCard from '@/components/DishCard'
+import { DishPreview } from '@/components/types'
 
-const inter = Inter({ subsets: ['latin'] })
+const courgette = Courgette({
+  weight: ["400", "400"],
+  subsets: ["latin"],
+  variable: "--font-courgette"
+})
 
-export default function Home() {
+export async function getServerSideProps() {
+  const res = await fetch(`http://localhost:3000/api/home`)
+  const data = await res.json()
+
+  if(data.status === 'ok'){
+    let temp = data.dishlist
+    return { props: { data: temp } }
+  }
+}
+
+
+export default function Home(props: any) {
+
+  let temp = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
+  const dishes: DishPreview[] = props.data
+
   return (
     <>
       <Head>
@@ -14,109 +35,48 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+      <main className='h-auto w-auto bg-white'>
+        <section className="h-96 flex flex-col bg-diner bg-fixed relative z-20">
+          <div className='w-full h-full  bg-gradient-to-tr from-black to-blue-400 opacity-70 absolute z-20'></div>
+          <nav className='flex flex-row flex-wrap w-full h-20 z-30'>
+            <div className='h-full w-1/2 flex flex-row items-center'>
+              <i className='fa fa-plate-wheat text-white text-5xl lg:text-7xl md:text-6xl sm:text-5xl'></i>
+              <h2 className='font-semibold text-white lg:text-5xl md:text-3xl sm:text-3xl italic ml-3'>RecipeKing</h2>
+            </div>
+            <div className='h-full w-1/2 flex flex-row-reverse pr-10'>
+              <button className='text-white sm:text-xl lg:h-1/2 md:h-8 sm:h-fit w-fit my-auto px-2 lg:px-3 md:px-2 sm:px-2 rounded-2xl outline outline-blue-200 hover:bg-slate-700 hover:shadow-2xl'>About Us</button>
+            </div>
+          </nav>
+          <div className='w-fit flex flex-row lg:min-w-1/2 my-10 self-center items-center h-60 z-30'>
+            <i className='fa fa-globe text-white text-9xl px-10'></i>
+            <section className=''>
+              <p className={`${courgette.className} text-white lg:text-5xl md:text-3xl sm:text-2xl`}>Discover New Dishes</p>
+              <p className={`${courgette.className} text-white lg:text-5xl md:text-3xl sm:text-2xl lg:px-10 mt-5`}>From Different Cultures</p>
+              <p className={`${courgette.className} text-white lg:text-5xl md:text-3xl sm:text-2xl lg:px-20 mt-5`}>All over the world</p>
+            </section>
           </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        </section>
+        <section className='h-full w-full flex flex-row'>
+          <aside>
+            <details className='text-white h-fit w-1/5 px-5 mx-auto shadow-2xl rounded-xl bg-slate-800 fixed left-5 bottom-0 z-30 hidden lg:inline-block md:hidden sm:hidden overflow-hidden'>
+              <summary className='p-4 focus:outline-none font-medium cursor-pointer text-center'>Search by Ingredients</summary>
+              <input type="text" placeholder=' Find Ingredient' className="w-full h-10 my-2 bg-slate-600" />
+              <div className="h-80 w-full mb-2 bg-slate-600"></div>
+              <h4 className="text-lg px-2">Selected: 
+                <span className="text-sm mx-3 italic text-gray-500">0 ingredients selected</span>
+              </h4>
+              <form className="h-44 w-full flex flex-col">
+                <div className="w-full h-28 bg-slate-600"></div>
+                <button className="h-10 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white">Find Dish</button>
+              </form>
+            </details>
+          </aside>
+          <section className='h-full w-full lg:w-11/12 grid gap-10 grid-cols-fluid py-10 px-5 mx-auto'>
+            {dishes.map((item, key) => {
+              return (<DishCard key={key} id={item.dishId} picture={item.dishpicture} dishname={item.dishname} locality={item.locality} ingredients={item.ingredients}/>)
+            })}
+          </section>
+        </section>
       </main>
     </>
   )
