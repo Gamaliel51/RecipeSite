@@ -12,15 +12,16 @@ const uniqueId = () => {
 export default async function Add(req: NextApiRequest, res: NextApiResponse){
     if(req.method === 'POST'){
         await connectMongo()
-        const { name, link, content } = req.body
+        const { name, link, locality, content, ingredients } = req.body
+        console.log(req.body)
         const id = uniqueId()
         
         const newPrev = new Preview({
             dishId: id,
             dishname: name,
-            ingredients: ['onion', 'salt', 'pepper'],
+            ingredients: ingredients,
             dishpicture: link,
-            locality: 'West Africa'
+            locality: locality,
         })
 
         const newDish = new Dish({

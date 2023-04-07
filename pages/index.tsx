@@ -4,6 +4,8 @@ import { Courgette } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import DishCard from '@/components/DishCard'
 import { DishPreview } from '@/components/types'
+import { useState } from 'react'
+import SelectedIngredients from '@/components/SelectedIngredients'
 
 const courgette = Courgette({
   weight: ["400", "400"],
@@ -17,15 +19,59 @@ export async function getServerSideProps() {
 
   if(data.status === 'ok'){
     let temp = data.dishlist
-    return { props: { data: temp } }
+    return { props: { data: temp, ing: data.ing } }
   }
 }
 
 
 export default function Home(props: any) {
 
-  let temp = ['a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a']
   const dishes: DishPreview[] = props.data
+  const ingredients: string[] = props.ing
+
+  const [ingList, setList] = useState(ingredients)
+  const [curList, setCurList] = useState(ingList)
+  const [selectedIng, setSelected] = useState<string[]>([])
+  const [sinput, setSinput] = useState('')
+  const [checkedNumber, setcheckedNumber] = useState<number>(0)
+
+  const search = (e: any) => {
+    setSinput(e.target.value)
+    if(e.target.value !== ''){
+      let temp = []
+      temp = ingList.filter((item) => item.includes(e.target.value))
+      setCurList(temp)
+      return
+    }
+    setCurList(ingList)
+    return
+  }
+
+  const handleCheck = (e: any) => {
+    if(e.target.checked) {
+      setcheckedNumber(checkedNumber + 1)
+      let temp  = selectedIng
+      temp.push(e.target.id)
+      setSelected(temp)
+    }
+    else{
+      if(checkedNumber > 0) {
+        setcheckedNumber(checkedNumber - 1)
+        let temp = selectedIng.filter((item) => item !== e.target.id)
+        setSelected(temp)
+      }
+    }
+  }
+
+  const renderSelected = (itemList: string[]) => {
+    let Ingredients = []
+    for (let i = 0; i < itemList.length; i++) {
+      Ingredients.push(
+        <SelectedIngredients key={i} name={itemList[i]} s={selectedIng} setS={setSelected}/>
+      )
+    }
+    return Ingredients
+  }
 
   return (
     <>
@@ -60,13 +106,32 @@ export default function Home(props: any) {
           <aside>
             <details className='text-white h-fit w-1/5 px-5 mx-auto shadow-2xl rounded-xl bg-slate-800 fixed left-5 bottom-0 z-30 hidden lg:inline-block md:hidden sm:hidden overflow-hidden'>
               <summary className='p-4 focus:outline-none font-medium cursor-pointer text-center'>Search by Ingredients</summary>
-              <input type="text" placeholder=' Find Ingredient' className="w-full h-10 my-2 bg-slate-600" />
-              <div className="h-80 w-full mb-2 bg-slate-600"></div>
+              <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-10 my-2 bg-slate-600" />
+              <div className="h-80 w-full mb-2 bg-slate-600">
+                {curList.map((item ,key) => {
+                  if(selectedIng.includes(item)){
+                    return(
+                    <div className="mx-1" key={key}>
+                      <label htmlFor={item}>
+                        <input className="mx-1 accent-slate-900" type={'checkbox'} checked name={item} id={item} onClick={handleCheck}/>{item}
+                      </label>
+                    </div>)
+                  }
+                  return(
+                  <div className="mx-1" key={key}>
+                    <label htmlFor={item}>
+                      <input className="mx-1 accent-slate-900" type={'checkbox'} name={item} id={item} onClick={handleCheck}/>{item}
+                    </label>
+                  </div>)
+                })}
+              </div>
               <h4 className="text-lg px-2">Selected: 
-                <span className="text-sm mx-3 italic text-gray-500">0 ingredients selected</span>
+                <span className="text-sm mx-3 italic text-gray-500">{checkedNumber} ingredients selected</span>
               </h4>
               <form className="h-44 w-full flex flex-col">
-                <div className="w-full h-28 bg-slate-600"></div>
+                <div className="w-full h-28 flex flex-row flex-wrap bg-slate-600 overflow-auto">
+                  {renderSelected(selectedIng)}
+                </div>
                 <button className="h-10 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white">Find Dish</button>
               </form>
             </details>

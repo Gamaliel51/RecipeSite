@@ -7,13 +7,9 @@ import { Ingredient, Preview } from '../../lib/schemas'
 export default async function HomeDishes(req: NextApiRequest, res: NextApiResponse){
 
     await connectMongo()
-    const samples = await Preview.aggregate([{ $sample: { size: 20 } }])
     const ingredients = await Ingredient.findOne()
-    if(samples){
-        if(ingredients){
-            return res.json({status: 'ok', dishlist: samples, ing: ingredients.ingredients})
-        }
-        return res.json({status: 'ok', dishlist: samples})
+    if(ingredients){
+        return res.json({status: 'ok', ing: ingredients.ingredients})
     }
 
     res.json({status: 'fail'})
