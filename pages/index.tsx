@@ -67,7 +67,7 @@ export default function Home(props: any) {
     let Ingredients = []
     for (let i = 0; i < itemList.length; i++) {
       Ingredients.push(
-        <SelectedIngredients key={i} name={itemList[i]} s={selectedIng} setS={setSelected}/>
+        <SelectedIngredients key={i} name={itemList[i]} s={selectedIng} setS={setSelected} cn={checkedNumber} setCN={setcheckedNumber}/>
       )
     }
     return Ingredients
@@ -107,7 +107,7 @@ export default function Home(props: any) {
             <details className='text-white h-fit w-1/5 px-5 mx-auto shadow-2xl rounded-xl bg-slate-800 fixed left-5 bottom-0 z-30 hidden lg:inline-block md:hidden sm:hidden overflow-hidden'>
               <summary className='p-4 focus:outline-none font-medium cursor-pointer text-center'>Search by Ingredients</summary>
               <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-10 my-2 bg-slate-600" />
-              <div className="h-80 w-full mb-2 bg-slate-600">
+              <div className="h-80 w-full mb-2 bg-slate-600 overflow-auto">
                 {curList.map((item ,key) => {
                   if(selectedIng.includes(item)){
                     return(

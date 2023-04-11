@@ -1,5 +1,5 @@
 import { connectMongo } from "@/lib/connectMongo";
-import { Preview, Dish } from "@/lib/schemas";
+import { Preview, Dish, ingAddRequest } from "@/lib/schemas";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const uniqueId = () => {
@@ -12,7 +12,7 @@ const uniqueId = () => {
 export default async function Add(req: NextApiRequest, res: NextApiResponse){
     if(req.method === 'POST'){
         await connectMongo()
-        const { name, link, locality, content, ingredients } = req.body
+        const { name, link, locality, content, ingredients, additional } = req.body
         console.log(req.body)
         const id = uniqueId()
         
@@ -22,6 +22,7 @@ export default async function Add(req: NextApiRequest, res: NextApiResponse){
             ingredients: ingredients,
             dishpicture: link,
             locality: locality,
+            extra: additional,
         })
 
         const newDish = new Dish({
@@ -29,8 +30,14 @@ export default async function Add(req: NextApiRequest, res: NextApiResponse){
             procedure: content
         })
 
+        const newAddition = new ingAddRequest({
+            dishname: name,
+            name: additional,
+        })
+
         await newPrev.save()
         await newDish.save()
+        await newAddition.save()
         res.end()
     }
 }

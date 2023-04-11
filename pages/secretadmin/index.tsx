@@ -25,6 +25,7 @@ export default function AddDish(props: any){
     const [curList, setCurList] = useState(ingList)
     const [selectedIng, setSelected] = useState<string[]>([])
     const [sinput, setSinput] = useState('')
+    const [additional, setAddditional] = useState('')
     const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
     const [ingr, setIngr] = useState('')
@@ -62,7 +63,7 @@ export default function AddDish(props: any){
       e.preventDefault()
 
       const response = await axios.post('/api/addDish'
-      , {name: name, link: link, locality: locality, ingredients: selectedIng, content: content})
+      , {name: name, link: link, locality: locality, ingredients: selectedIng, content: content, additional: additional})
 
     }
 
@@ -101,6 +102,7 @@ export default function AddDish(props: any){
                     </div>)
                   })}
                 </div>
+                <input type="text" placeholder=" Enter ingredients not found" value={additional} onChange={(e) => setAddditional(e.target.value)} className="w-full h-10 my-2 bg-slate-600"/>
               </div>
               <div className="w-11/12 mx-auto">
                 <Editor value={content}

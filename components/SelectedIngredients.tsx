@@ -4,12 +4,14 @@ interface Props{
     name: string,
     s: string[],
     setS: (a: string[]) => void,
+    cn: number,
+    setCN: (a: number) => void,
 }
 
 
 const SelectedIngredients: NextPage<Props> = (props) => {
 
-    const { name, s, setS } = props
+    const { name, s, setS, cn, setCN } = props
 
     const handleClick = (e: any) => {
         e.preventDefault()
@@ -18,6 +20,7 @@ const SelectedIngredients: NextPage<Props> = (props) => {
         setS(temp)
         let elem = document.getElementById(name)
         elem!.checked = false
+        setCN(cn - 1)
     }
 
     return(
