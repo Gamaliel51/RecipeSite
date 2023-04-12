@@ -28,7 +28,8 @@ export default function AddDish(props: any){
     const [additional, setAddditional] = useState('')
     const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
-    const [ingr, setIngr] = useState('')
+    const [submitted, setSubmitted] = useState(false)
+    const [failed, setFailed] = useState(false)
 
     const search = (e: any) => {
       setSinput(e.target.value)
@@ -65,6 +66,37 @@ export default function AddDish(props: any){
       const response = await axios.post('/api/addDish'
       , {name: name, link: link, locality: locality, ingredients: selectedIng, content: content, additional: additional})
 
+      const result = response.data
+      if(result.status === 'ok'){
+        setSubmitted(true)
+      }
+
+      if(result.status === 'fail'){
+        setFailed(true)
+      }
+
+    }
+
+    if(submitted){
+      return(
+        <div className="h-screen w-full bg-diner">
+          <div className="w-1/2 h-3/4 mx-auto relative top-20 text-center bg-slate-800">
+            <i className="fa fa-circle-check fa-10x top-1/3 relative text-white"></i>
+            <p className="relative top-2/4 text-white text-2xl italic">Added Successfully!</p>
+          </div>
+        </div>
+      )
+    }
+
+    if(failed){
+      return(
+        <div className="h-screen w-full bg-diner">
+          <div className="w-1/2 h-3/4 mx-auto relative top-20 text-center bg-slate-800">
+            <i className="fa fa-times-circle fa-10x top-1/3 relative text-white"></i>
+            <p className="relative top-2/4 text-white text-2xl italic">An Error Occurred. Please Try Again.</p>
+          </div>
+        </div>
+      )
     }
 
     return(
