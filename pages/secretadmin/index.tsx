@@ -134,7 +134,7 @@ export default function AddDish(props: any){
                     </div>)
                   })}
                 </div>
-                <input type="text" placeholder=" Enter ingredients not found" value={additional} onChange={(e) => setAddditional(e.target.value)} className="w-full h-10 my-2 bg-slate-600"/>
+                <input type="text" placeholder=" Enter ingredients not found ( Separate by commas )" value={additional} onChange={(e) => setAddditional(e.target.value)} className="w-full h-10 my-2 bg-slate-600"/>
               </div>
               <div className="w-11/12 mx-auto">
                 <Editor value={content}

@@ -35,6 +35,8 @@ export default function Home(props: any) {
   const [sinput, setSinput] = useState('')
   const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
+  const [searchPage, setSearchPage] = useState(false)
+
   const search = (e: any) => {
     setSinput(e.target.value)
     if(e.target.value !== ''){

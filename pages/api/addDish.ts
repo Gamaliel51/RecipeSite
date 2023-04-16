@@ -1,4 +1,5 @@
 import { connectMongo } from "@/lib/connectMongo";
+import { Ingredient } from "@/lib/schemas";
 import { Preview, Dish, ingAddRequest } from "@/lib/schemas";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -16,20 +17,31 @@ export default async function Add(req: NextApiRequest, res: NextApiResponse){
             const { name, link, locality, content, ingredients, additional } = req.body
             console.log(req.body)
             const id = uniqueId()
+
+            const addArray = additional.split(',')
+            let temp: string[] = []
+            for(let i = 0; i < addArray.length; i++){
+                temp.push(addArray[i].trim())
+            }
+
+            const combIng = [...ingredients, ...temp]
             
             const newPrev = new Preview({
                 dishId: id,
                 dishname: name,
-                ingredients: ingredients,
+                ingredients: combIng,
                 dishpicture: link,
                 locality: locality,
-                extra: additional,
             })
 
             const newDish = new Dish({
                 dishId: id,
                 procedure: content
             })
+
+            const Ings = await Ingredient.findOne()
+            const newIngs = [...Ings.ingredients, ...temp]
+            Ings.ingredients = newIngs
 
             const newAddition = new ingAddRequest({
                 dishname: name,
@@ -38,6 +50,7 @@ export default async function Add(req: NextApiRequest, res: NextApiResponse){
 
             await newPrev.save()
             await newDish.save()
+            await Ings.save()
             await newAddition.save()
             res.json({status: 'ok'})
         }
