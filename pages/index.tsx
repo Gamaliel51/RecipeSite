@@ -94,6 +94,12 @@ export default function Home(props: any) {
 
   }
 
+  const redirectAbout = (e: any) => {
+    e.preventDefault()
+    router.push('/about')
+    return
+  }
+
   return (
     <>
       <Head>
@@ -107,11 +113,11 @@ export default function Home(props: any) {
           <div className='w-full h-full  bg-gradient-to-tr from-black to-blue-400 opacity-70 absolute z-20'></div>
           <nav className='flex flex-row flex-wrap w-full h-20 z-30'>
             <div className='h-full w-1/2 flex flex-row items-center'>
-              <i className='fa fa-crown text-white text-5xl lg:text-7xl md:text-6xl sm:text-5xl'></i>
+              <i className='fa fa-crown text-orange-300 text-5xl lg:text-7xl md:text-6xl sm:text-5xl'></i>
               <h2 className='font-semibold text-white lg:text-5xl md:text-3xl sm:text-3xl italic ml-3'>RecipeKing </h2>
             </div>
             <div className='h-full w-1/2 flex flex-row-reverse pr-10'>
-              <button className='text-white sm:text-xl lg:h-1/2 md:h-8 sm:h-fit w-fit my-auto px-2 lg:px-3 md:px-2 sm:px-2 rounded-2xl outline outline-blue-200 hover:bg-slate-700 hover:shadow-2xl'>About Us</button>
+              <button onClick={redirectAbout} className='text-white sm:text-xl lg:h-1/2 md:h-8 sm:h-fit w-fit my-auto px-2 lg:px-3 md:px-2 sm:px-2 rounded-2xl outline outline-blue-200 hover:bg-slate-700 hover:shadow-2xl'>About Us</button>
             </div>
           </nav>
           <div className='w-fit flex flex-row lg:min-w-1/2 my-10 self-center items-center h-60 z-30'>
