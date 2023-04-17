@@ -18,7 +18,6 @@ export default async function Search(req: NextApiRequest, res: NextApiResponse){
         const results = allPrev.filter((item) => checkSubset(selected, item.ingredients))
 
         if(results){
-            console.log(results)
             return res.json({status: 'ok', data: results})
         }
 

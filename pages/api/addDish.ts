@@ -15,7 +15,6 @@ export default async function Add(req: NextApiRequest, res: NextApiResponse){
         try{
             await connectMongo()
             const { name, link, locality, content, ingredients, additional } = req.body
-            console.log(req.body)
             const id = uniqueId()
 
             const addArray = additional.split(',')

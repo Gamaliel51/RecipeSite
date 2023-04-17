@@ -30,7 +30,6 @@ export default function DishEx(props: any){
     const info: CompositeDishData = props.data
     const link = info.dishpicture
     const procedure = info.procedure
-    console.log(procedure)
     
     const render = () => {
         const element = parse(procedure)

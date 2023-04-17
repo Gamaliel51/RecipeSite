@@ -30,7 +30,6 @@ export default function SearchPage(props: any){
     const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
     const { searchData, setSearchData} = useContext(SearchContext)
-    console.log(searchData, 'herhe')
 
     const search = (e: any) => {
         setSinput(e.target.value)
