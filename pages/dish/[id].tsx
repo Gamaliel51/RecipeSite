@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head"
 import { Courgette } from 'next/font/google'
@@ -60,6 +61,26 @@ export default function DishEx(props: any){
                         <iframe srcDoc={procedure} className="w-full h-full"></iframe>
                     </div>
                 </section>
+                <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
+                    <a href="/">
+                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                        <i className="fa fa-home fa-2x"></i>
+                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
+                    </div>
+                    </a>
+                    <a href="/suggest">
+                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                        <i className="fa fa-handshake-angle fa-2x"></i>
+                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
+                    </div>
+                    </a>
+                    <a href="/report">
+                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                        <i className="fa fa-flag fa-2x"></i>
+                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
+                    </div>
+                    </a>
+                </aside>
             </main>
         </>
     )

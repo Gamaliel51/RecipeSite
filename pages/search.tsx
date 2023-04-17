@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { DishPreview } from '../components/types'
@@ -6,6 +7,7 @@ import DishCard from "@/components/DishCard";
 import axios from "axios";
 import SelectedIngredients from "@/components/SelectedIngredients";
 import { SearchContext } from "./_app";
+import { SearchBox } from "@/components/SearchBox";
 
 export async function getServerSideProps() {
     const res = await fetch(`http://localhost:3000/api/home`)
@@ -27,6 +29,7 @@ export default function SearchPage(props: any){
     const [curList, setCurList] = useState(ingList)
     const [selectedIng, setSelected] = useState<string[]>([])
     const [sinput, setSinput] = useState('')
+    const [searchPopupDisp, setDisp] = useState(false)
     const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
     const { searchData, setSearchData} = useContext(SearchContext)
@@ -90,6 +93,7 @@ export default function SearchPage(props: any){
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <main className="h-screen w-full bg-diner flex">
+                    <SearchBox showSearch={searchPopupDisp} setShow={setDisp} ing={ingredients}/>
                     <div className="h-3/4 w-3/4 mx-auto my-auto bg-white flex text-center">
                         <p className="text-slate-800 text-6xl h-1/4 w-full my-auto"><i className="fa fa-exclamation-circle text-black fa-1x"></i> No Results Found</p>
                     </div>
@@ -126,6 +130,29 @@ export default function SearchPage(props: any){
                             </form>
                         </details>
                     </aside>
+                    <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
+                        <div className="w-16 h-16 lg:hidden bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl" onClick={() => setDisp(true)}>
+                            <i className="fa fa-search fa-2x"></i>
+                        </div>
+                        <a href="/">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-home fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
+                        </div>
+                        </a>
+                        <a href="/suggest">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-handshake-angle fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
+                        </div>
+                        </a>
+                        <a href="/report">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-flag fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
+                        </div>
+                        </a>
+                    </aside>
                 </main>
             </>
         )
@@ -140,6 +167,7 @@ export default function SearchPage(props: any){
             <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className="h-auto min-h-screen w-full bg-diner">
+                <SearchBox showSearch={searchPopupDisp} setShow={setDisp} ing={ingredients}/>
                 <div className="h-full min-h-screen w-3/4 mx-auto bg-white">
                     <section className='h-full w-full lg:w-11/12 grid gap-10 grid-cols-fluid py-10 px-5 mx-auto'>
                         {searchData.map((item, key) => {
@@ -180,6 +208,29 @@ export default function SearchPage(props: any){
                             <button className="h-10 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white" type="submit">Find Dish</button>
                         </form>
                     </details>
+                </aside>
+                <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
+                    <div className="w-16 h-16 lg:hidden bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl" onClick={() => setDisp(true)}>
+                        <i className="fa fa-search fa-2x"></i>
+                    </div>
+                    <a href="/">
+                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                        <i className="fa fa-home fa-2x"></i>
+                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
+                    </div>
+                    </a>
+                    <a href="/suggest">
+                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                        <i className="fa fa-handshake-angle fa-2x"></i>
+                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
+                    </div>
+                    </a>
+                    <a href="/report">
+                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                        <i className="fa fa-flag fa-2x"></i>
+                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
+                    </div>
+                    </a>
                 </aside>
             </main>
         </>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Head from 'next/head'
 import Image from 'next/image'
 import { Courgette } from 'next/font/google'
@@ -9,6 +10,7 @@ import SelectedIngredients from '@/components/SelectedIngredients'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { SearchContext } from './_app'
+import { SearchBox } from '@/components/SearchBox'
 
 const courgette = Courgette({
   weight: ["400", "400"],
@@ -38,6 +40,7 @@ export default function Home(props: any) {
   const [curList, setCurList] = useState(ingList)
   const [selectedIng, setSelected] = useState<string[]>([])
   const [sinput, setSinput] = useState('')
+  const [searchPopupDisp, setDisp] = useState(false)
   const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
   const { searchData, setSearchData} = useContext(SearchContext)
@@ -100,6 +103,12 @@ export default function Home(props: any) {
     return
   }
 
+  const handleSearchPopUp = (e: any) => {
+    e.preventDefault()
+    setDisp(true)
+    return
+  }
+
   return (
     <>
       <Head>
@@ -109,6 +118,7 @@ export default function Home(props: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='h-auto w-auto bg-white'>
+        <SearchBox showSearch={searchPopupDisp} setShow={setDisp} ing={ingredients}/>
         <section className="h-96 flex flex-col bg-diner bg-fixed relative z-20">
           <div className='w-full h-full  bg-gradient-to-tr from-black to-blue-400 opacity-70 absolute z-20'></div>
           <nav className='flex flex-row flex-wrap w-full h-20 z-30'>
@@ -169,6 +179,29 @@ export default function Home(props: any) {
             })}
           </section>
         </section>
+        <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
+          <div className="w-16 h-16 lg:hidden bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl" onClick={() => setDisp(true)}>
+              <i className="fa fa-search fa-2x"></i>
+          </div>
+          <a href="/">
+            <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                <i className="fa fa-home fa-2x"></i>
+                <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
+            </div>
+          </a>
+          <a href="/suggest">
+            <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                <i className="fa fa-handshake-angle fa-2x"></i>
+                <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
+            </div>
+          </a>
+          <a href="/report">
+            <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                <i className="fa fa-flag fa-2x"></i>
+                <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
+            </div>
+          </a>
+        </aside>
       </main>
     </>
   )
