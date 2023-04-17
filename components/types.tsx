@@ -19,3 +19,8 @@ export type CompositeDishData = {
     locality: string,
     procedure: string,
 }
+
+export type SearchContextType = {
+    searchData: DishPreview[],
+    setSearchData: (a: DishPreview[]) => void
+}

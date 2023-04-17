@@ -3,9 +3,12 @@ import Image from 'next/image'
 import { Courgette } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import DishCard from '@/components/DishCard'
-import { DishPreview } from '@/components/types'
-import { useState } from 'react'
+import { DishPreview, SearchContextType } from '@/components/types'
+import { createContext, useContext, useState } from 'react'
 import SelectedIngredients from '@/components/SelectedIngredients'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { SearchContext } from './_app'
 
 const courgette = Courgette({
   weight: ["400", "400"],
@@ -26,6 +29,8 @@ export async function getServerSideProps() {
 
 export default function Home(props: any) {
 
+  const router = useRouter()
+
   const dishes: DishPreview[] = props.data
   const ingredients: string[] = props.ing
 
@@ -35,7 +40,7 @@ export default function Home(props: any) {
   const [sinput, setSinput] = useState('')
   const [checkedNumber, setcheckedNumber] = useState<number>(0)
 
-  const [searchPage, setSearchPage] = useState(false)
+  const { searchData, setSearchData} = useContext(SearchContext)
 
   const search = (e: any) => {
     setSinput(e.target.value)
@@ -75,6 +80,20 @@ export default function Home(props: any) {
     return Ingredients
   }
 
+  const handleSearchSubmit = async (e: any) => {
+    e.preventDefault()
+
+    const response = await axios.post('/api/searchDish', {selected: selectedIng})
+
+    const result = response.data
+
+    if(result.status === 'ok'){
+      setSearchData(result.data)
+      router.push('/search')
+    }
+
+  }
+
   return (
     <>
       <Head>
@@ -88,8 +107,8 @@ export default function Home(props: any) {
           <div className='w-full h-full  bg-gradient-to-tr from-black to-blue-400 opacity-70 absolute z-20'></div>
           <nav className='flex flex-row flex-wrap w-full h-20 z-30'>
             <div className='h-full w-1/2 flex flex-row items-center'>
-              <i className='fa fa-plate-wheat text-white text-5xl lg:text-7xl md:text-6xl sm:text-5xl'></i>
-              <h2 className='font-semibold text-white lg:text-5xl md:text-3xl sm:text-3xl italic ml-3'>RecipeKing</h2>
+              <i className='fa fa-crown text-white text-5xl lg:text-7xl md:text-6xl sm:text-5xl'></i>
+              <h2 className='font-semibold text-white lg:text-5xl md:text-3xl sm:text-3xl italic ml-3'>RecipeKing </h2>
             </div>
             <div className='h-full w-1/2 flex flex-row-reverse pr-10'>
               <button className='text-white sm:text-xl lg:h-1/2 md:h-8 sm:h-fit w-fit my-auto px-2 lg:px-3 md:px-2 sm:px-2 rounded-2xl outline outline-blue-200 hover:bg-slate-700 hover:shadow-2xl'>About Us</button>
@@ -130,11 +149,11 @@ export default function Home(props: any) {
               <h4 className="text-lg px-2">Selected: 
                 <span className="text-sm mx-3 italic text-gray-500">{checkedNumber} ingredients selected</span>
               </h4>
-              <form className="h-44 w-full flex flex-col">
+              <form className="h-44 w-full flex flex-col" onSubmit={handleSearchSubmit}>
                 <div className="w-full h-28 flex flex-row flex-wrap bg-slate-600 overflow-auto">
                   {renderSelected(selectedIng)}
                 </div>
-                <button className="h-10 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white">Find Dish</button>
+                <button className="h-10 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white" type='submit'>Find Dish</button>
               </form>
             </details>
           </aside>
