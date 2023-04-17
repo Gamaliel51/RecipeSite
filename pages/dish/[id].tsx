@@ -47,11 +47,11 @@ export default function DishEx(props: any){
             </Head>
             <main className="h-screen lg:h-full md:h-screen sm:h-screen w-full flex flex-col bg-slate-800">
                 <section className="h-96 w-4/5 lg:w-3/5 mx-auto flex flex-row relative">
-                    <h4 className={`text-5xl text-white absolute z-10 left-64 top-10 ${courgette.className}`}>{info.dishname}</h4>
                     <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
                     <section className="lg:basis-1/2 h-full w-full lg:w-0 flex items-center relative">
                         <img className="w-full h-full" src={link} alt="photo"/>
                         <div className="w-full h-full bg-gradient-to-tr from-black to-blue-400 opacity-40 absolute  "></div>
+                        <h4 className={`text-5xl text-white absolute z-10 left-5 top-10 ${courgette.className}`}>{info.dishname}</h4>
                         
                     </section>
                     <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
