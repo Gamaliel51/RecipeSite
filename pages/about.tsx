@@ -36,17 +36,17 @@ export default function About(){
                 </nav>
                 <section className="h-auto w-3/4 min-h-screen bg-white mx-auto py-10 px-10">
                     <section className="w-full h-fit flex flex-row">
-                        <p className={`${courgette.className} basis-3/5 italic text-4xl leading-relaxed tracking-wide text-blue-300`}>
+                        <p className={`${courgette.className} basis-auto lg:basis-3/5 italic lg:text-4xl leading-relaxed tracking-wide text-blue-300`}>
                             Welcome to Recipe Kings, your go-to source for delicious, mouth-watering recipes 
                             that are fit for royalty! Our mission is simple: to help you unleash your inner chef 
                             and create meals that will impress even the most discerning taste buds.
                         </p>
-                        <div className="blobB ml-5">
+                        <div className="blobB ml-5 hidden lg:inline-block">
                             <div className="blob"></div>
                         </div>
                     </section>
                     <section className="w-full h-fit mt-10">
-                        <p className={`${courgette.className} italic text-4xl leading-relaxed tracking-wide text-slate-800`}>
+                        <p className={`${courgette.className} italic lg:text-4xl leading-relaxed tracking-wide text-slate-800`}>
                             At Recipe Kings, we understand that cooking can be both a pleasure and a challenge. 
                             Whether you&apos;re an experienced home cook or just starting out in the kitchen, we&apos;ve got you covered. 
                             Our team of expert recipe developers has created a wide range of recipes that are easy to follow and 
@@ -54,7 +54,7 @@ export default function About(){
                         </p>
                     </section>
                     <section className="w-full h-fit mt-10">
-                        <p className={`${courgette.className} italic text-4xl leading-relaxed tracking-wide text-slate-800`}>
+                        <p className={`${courgette.className} italic lg:text-4xl leading-relaxed tracking-wide text-slate-800`}>
                             At Recipe Kings, we believe that cooking should be fun and accessible to everyone.
                             That&apos;s why we&apos;ve designed our website to be user-friendly and easy to navigate. 
                             You can search for recipes by selecting the ingredients you have at hand.

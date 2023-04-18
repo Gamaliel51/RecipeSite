@@ -75,15 +75,10 @@ export const SearchBox = (props: Props) => {
 
         if(result.status === 'ok'){
             setSearchData(result.data)
+            setShow(false)
             router.push('/search')
         }
 
-    }
-
-    const redirectAbout = (e: any) => {
-        e.preventDefault()
-        router.push('/about')
-        return
     }
 
     return(
