@@ -17,7 +17,7 @@ const courgette = Courgette({
 export async function getServerSideProps(context: NextPageContext) {
     const { id } = context.query
     const { req } = context
-    let baseUrl = req ? `http://${req.headers.host}` : '';
+    let baseUrl = req ? `https://${req.headers.host}` : '';
     const res = await fetch(`${baseUrl}/api/dish/${id}`)
     const data = await res.json()
   

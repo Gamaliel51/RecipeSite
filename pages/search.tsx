@@ -10,7 +10,7 @@ import { SearchContext } from "./_app";
 import { SearchBox } from "@/components/SearchBox";
 
 export async function getServerSideProps({req}: any) {
-    let baseUrl = req ? `http://${req.headers.host}` : '';
+    let baseUrl = req ? `https://${req.headers.host}` : '';
     if(req.protocol){
         baseUrl = req ? `${req.protocol}://${req.headers.host}` : '';
     }
