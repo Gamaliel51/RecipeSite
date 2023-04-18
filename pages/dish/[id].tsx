@@ -6,8 +6,7 @@ import { useRouter } from "next/router"
 import { NextPageContext } from "next"
 import { CompositeDishData } from "@/components/types"
 import parse from 'html-react-parser'
-import { axiosGet, return_url } from "../secretadmin"
-import axios from "axios"
+
 
 const courgette = Courgette({
     weight: ["400", "400"],
@@ -15,10 +14,12 @@ const courgette = Courgette({
     variable: "--font-courgette"
 })  
 
-export async function getServerSideProps(context: any) {
+export async function getServerSideProps(context: NextPageContext) {
     const { id } = context.query
-    const res = await axios.get(`/api/dish/${id}`)
-    const data = await res.data
+    const { req } = context
+    let baseUrl = req ? `http://${req.headers.host}` : '';
+    const res = await fetch(`${baseUrl}/api/dish/${id}`)
+    const data = await res.json()
   
     if(data.status === 'ok'){
       let temp = data.payload

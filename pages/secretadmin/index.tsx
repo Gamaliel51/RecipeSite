@@ -12,14 +12,13 @@ export function return_url(context: { req: { rawHeaders: any[]; }; }) {
   }
 }
 
-export async function axiosGet(url: string){
-  const res = await axios.get(url)
-  return res.data
-}
-
-export async function getServerSideProps(context: any) {
-  const res = await axios.get('/api/ingredients')
-  const data = await res.data
+export async function getServerSideProps({req}: any){
+  let baseUrl = req ? `http://${req.headers.host}` : '';
+  if(req.protocol){
+    baseUrl = req ? `${req.protocol}://${req.headers.host}` : '';
+  }
+  const res = await fetch(`${baseUrl}/api/ingredients`)
+  const data = await res.json()
 
   if(data.status === 'ok'){
     return { props: { ing: data.ing } }
