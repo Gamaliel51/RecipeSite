@@ -4,12 +4,22 @@ import { Editor } from "@tinymce/tinymce-react"
 import axios from "axios"
 
 export function return_url(context: { req: { rawHeaders: any[]; }; }) {
-  return `${process.env.URL}`;
+  if (process.env.NODE_ENV === "production") {
+    // if you are hosting a http website use http instead of https
+    return `https://${context.req.rawHeaders[1]}`;
+  } else{
+    return `${process.env.URL}`;
+  }
+}
+
+export async function axiosGet(url: string){
+  const res = await axios.get(url)
+  return res.data
 }
 
 export async function getServerSideProps(context: any) {
-  const res = await fetch(`${return_url(context)}/api/ingredients`)
-  const data = await res.json()
+  const res = await axios.get('/api/ingredients')
+  const data = await res.data
 
   if(data.status === 'ok'){
     return { props: { ing: data.ing } }

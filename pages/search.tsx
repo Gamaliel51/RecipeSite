@@ -8,17 +8,18 @@ import axios from "axios";
 import SelectedIngredients from "@/components/SelectedIngredients";
 import { SearchContext } from "./_app";
 import { SearchBox } from "@/components/SearchBox";
-import { return_url } from "./secretadmin";
+import { axiosGet, return_url } from "./secretadmin";
 
 export async function getServerSideProps(context: any) {
-    const res = await fetch(`${return_url(context)}/api/home`)
-    const data = await res.json()
+    const res = await axios.get('/api/home')
+    const data = await res.data
   
     if(data.status === 'ok'){
       let temp = data.dishlist
       return { props: { data: temp, ing: data.ing } }
     }
 }
+
 
 
 export default function SearchPage(props: any){
