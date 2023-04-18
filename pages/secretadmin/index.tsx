@@ -4,12 +4,7 @@ import { Editor } from "@tinymce/tinymce-react"
 import axios from "axios"
 
 export function return_url(context: { req: { rawHeaders: any[]; }; }) {
-  if (process.env.NODE_ENV === "production") {
-    // if you are hosting a http website use http instead of https
-    return `https://${context.req.rawHeaders[1]}`;
-  } else{
-    return "http://localhost:3000";
-  }
+  return `http://${context.req.rawHeaders[1]}`;
 }
 
 export async function getServerSideProps(context: any) {
