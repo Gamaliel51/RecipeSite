@@ -8,9 +8,10 @@ import axios from "axios";
 import SelectedIngredients from "@/components/SelectedIngredients";
 import { SearchContext } from "./_app";
 import { SearchBox } from "@/components/SearchBox";
+import { return_url } from "./secretadmin";
 
-export async function getServerSideProps() {
-    const res = await fetch(`http://localhost:3000/api/home`)
+export async function getServerSideProps(context: any) {
+    const res = await fetch(`${return_url(context)}/api/home`)
     const data = await res.json()
   
     if(data.status === 'ok'){

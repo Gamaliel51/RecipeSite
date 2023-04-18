@@ -11,6 +11,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import { SearchContext } from './_app'
 import { SearchBox } from '@/components/SearchBox'
+import { return_url } from './secretadmin'
 
 const courgette = Courgette({
   weight: ["400", "400"],
@@ -18,8 +19,8 @@ const courgette = Courgette({
   variable: "--font-courgette"
 })
 
-export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/home`)
+export async function getServerSideProps(context: any) {
+  const res = await fetch(`${return_url(context)}/api/home`)
   const data = await res.json()
 
   if(data.status === 'ok'){

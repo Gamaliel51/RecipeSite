@@ -3,9 +3,17 @@ import { useRef, useState } from "react"
 import { Editor } from "@tinymce/tinymce-react"
 import axios from "axios"
 
+export function return_url(context: { req: { rawHeaders: any[]; }; }) {
+  if (process.env.NODE_ENV === "production") {
+    // if you are hosting a http website use http instead of https
+    return `https://${context.req.rawHeaders[1]}`;
+  } else{
+    return "http://localhost:3000";
+  }
+}
 
-export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/ingredients`)
+export async function getServerSideProps(context: any) {
+  const res = await fetch(`${return_url(context)}/api/ingredients`)
   const data = await res.json()
 
   if(data.status === 'ok'){
@@ -102,7 +110,7 @@ export default function AddDish(props: any){
 
     return(
         <div className="h-auto bg-diner">
-            <form action="http://localhost:3000/api/addDish" method="POST" onSubmit={handleSubmit} className="w-3/4 h-auto mx-auto py-5 bg-slate-800">
+            <form action="/api/addDish" method="POST" onSubmit={handleSubmit} className="w-3/4 h-auto mx-auto py-5 bg-slate-800">
               <h1 className="text-white font-bold text-3xl mb-10 text-center italic">ADD NEW DISH</h1>
               <div className="w-3/4 h-auto mx-auto mb-5 flex flex-wrap justify-between">
                 <input type="text" placeholder="Enter Dish Name" value={name} onChange={(e) => setName(e.target.value)} className="w-96 h-11 px-2"/>
