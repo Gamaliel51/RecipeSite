@@ -18,7 +18,7 @@ const SelectedIngredients: NextPage<Props> = (props) => {
         let temp = []
         temp = s.filter((item) => item !== name)
         setS(temp)
-        let elem = document.getElementById(name)
+        let elem: any = document.getElementById(name)
         elem!.checked = false
         setCN(cn - 1)
     }
