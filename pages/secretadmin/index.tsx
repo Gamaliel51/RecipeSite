@@ -4,7 +4,7 @@ import { Editor } from "@tinymce/tinymce-react"
 import axios from "axios"
 
 export function return_url(context: { req: { rawHeaders: any[]; }; }) {
-  return `http://${context.req.rawHeaders[1]}`;
+  return `${process.env.URL}`;
 }
 
 export async function getServerSideProps(context: any) {
