@@ -26,73 +26,92 @@ export default function Suggest(){
 
     if(success){
         return(
-            <div className="h-screen w-full bg-diner">
-                <div className="w-11/12 lg:w-1/2 h-3/4 mx-auto relative top-20 text-center bg-white">
-                    <i className="fa fa-circle-check fa-6x top-1/3 relative text-black"></i>
-                    <p className="relative top-2/4 text-black text-2xl italic">Success</p>
+            <>
+                <Head>
+                    <title>Suggest Dish</title>
+                    <meta name="description" content="Suggest A New Dish For Us to Add" />
+                    <meta name="keywords" content="add, suggest, recipe, kings, recipe kings, recipekings, us" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                </Head>
+                <div className="h-screen w-full bg-diner">
+                    <div className="w-11/12 lg:w-1/2 h-3/4 mx-auto relative top-20 text-center bg-white">
+                        <i className="fa fa-circle-check fa-6x top-1/3 relative text-black"></i>
+                        <p className="relative top-2/4 text-black text-2xl italic">Success</p>
+                    </div>
+                    <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
+                        <a href="/">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-home fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
+                        </div>
+                        </a>
+                        <a href="/suggest">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-handshake-angle fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
+                        </div>
+                        </a>
+                        <a href="/report">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-flag fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
+                        </div>
+                        </a>
+                    </aside>
                 </div>
-                <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
-                    <a href="/">
-                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
-                        <i className="fa fa-home fa-2x"></i>
-                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
-                    </div>
-                    </a>
-                    <a href="/suggest">
-                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
-                        <i className="fa fa-handshake-angle fa-2x"></i>
-                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
-                    </div>
-                    </a>
-                    <a href="/report">
-                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
-                        <i className="fa fa-flag fa-2x"></i>
-                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
-                    </div>
-                    </a>
-                </aside>
-            </div>
+            </>
         )
     }
   
     if(fail){
         return(
-            <div className="h-screen w-full bg-diner">
-                <div className="w-11/12 lg:w-1/2 h-3/4 mx-auto relative top-20 text-center bg-white">
-                    <i className="fa fa-times-circle fa-6x top-1/3 relative text-black"></i>
-                    <p className="relative top-2/4 text-black lg:text-2xl italic">An Error Occurred. Please Try Again.</p>
+            <>
+                <Head>
+                    <title>Suggest Dish</title>
+                    <meta name="description" content="Suggest A New Dish For Us to Add" />
+                    <meta name="keywords" content="add, suggest, recipe, kings, recipe kings, recipekings, us" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                </Head>
+                <div className="h-screen w-full bg-diner">
+                    <div className="w-11/12 lg:w-1/2 h-3/4 mx-auto relative top-20 text-center bg-white">
+                        <i className="fa fa-times-circle fa-6x top-1/3 relative text-black"></i>
+                        <p className="relative top-2/4 text-black lg:text-2xl italic">An Error Occurred. Please Try Again.</p>
+                    </div>
+                    <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
+                        <a href="/">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-home fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
+                        </div>
+                        </a>
+                        <a href="/suggest">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-handshake-angle fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
+                        </div>
+                        </a>
+                        <a href="/report">
+                        <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
+                            <i className="fa fa-flag fa-2x"></i>
+                            <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
+                        </div>
+                        </a>
+                    </aside>
                 </div>
-                <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
-                    <a href="/">
-                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
-                        <i className="fa fa-home fa-2x"></i>
-                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Home</span>
-                    </div>
-                    </a>
-                    <a href="/suggest">
-                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
-                        <i className="fa fa-handshake-angle fa-2x"></i>
-                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Suggest</span>
-                    </div>
-                    </a>
-                    <a href="/report">
-                    <div className="group w-16 h-16 bg-white rounded-full flex justify-center items-center hover:bg-black hover:text-white cursor-pointer shadow-2xl">
-                        <i className="fa fa-flag fa-2x"></i>
-                        <span className="group-hover:opacity-100 transition-opacity bg-gray-800 p-1 text-sm text-gray-100 rounded-md absolute left-1/2 -top-20 -translate-x-1/2 translate-y-full opacity-0 m-4 mx-auto">Report</span>
-                    </div>
-                    </a>
-                </aside>
-            </div>
+            </>
         )
     }
 
     return(
         <>
             <Head>
-                <title>Create Next App</title>
-                <meta name="description" content="Generated by create next app" />
+                <title>Suggest Dish</title>
+                <meta name="description" content="Suggest A New Dish For Us to Add" />
+                <meta name="keywords" content="add, suggest, recipe, kings, recipe kings, recipekings, us" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
             </Head>
             <main className="h-auto w-full min-h-screen flex bg-diner">
                 <form action="/api/suggestDish" method="post" onSubmit={handleSubmit} className="h-96 w-11/12 lg:w-2/5 m-auto bg-white flex flex-col rounded-md">
