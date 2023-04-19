@@ -84,8 +84,8 @@ export const SearchBox = (props: Props) => {
     return(
         <Popup open={showSearch} closeOnDocumentClick={false} contentStyle={{height: '100%', width: '100%', display: 'flex'}} repositionOnResize={true}>
             <div className="text-white h-5/6 w-72 px-5 my-auto mx-auto shadow-2xl rounded-xl bg-slate-800 z-30 lg:hidden overflow-auto self-center">
-                <h4 className='p-2 focus:outline-none font-medium text-center text-sm'>Search by Ingredients <i className="fa fa-close relative left-10" onClick={() => setShow(false)}></i></h4>
-                <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-6 my-1 bg-slate-600" />
+                <h4 className='p-1 focus:outline-none font-medium text-center text-sm'>Search by Ingredients <i className="fa fa-close relative left-10" onClick={() => setShow(false)}></i></h4>
+                <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-6 my-2 bg-slate-600" />
                 <div className="h-60 w-full mb-1 bg-slate-600 overflow-auto">
                 {curList.map((item ,key) => {
                     if(selectedIng.includes(item)){
@@ -104,8 +104,8 @@ export const SearchBox = (props: Props) => {
                     </div>)
                 })}
                 </div>
-                <h4 className="text-base px-2">Selected: 
-                    <span className="text-sm mx-3 italic text-gray-500">{checkedNumber} ingredients selected</span>
+                <h4 className="text-sm px-2">Selected: 
+                    <span className="text-xs mx-1 italic text-gray-500">{checkedNumber} ingredients selected</span>
                 </h4>
                 <form className="h-32 w-full flex flex-col" onSubmit={handleSearchSubmit}>
                 <div className="w-full h-24 flex flex-row flex-wrap bg-slate-600 overflow-auto">
