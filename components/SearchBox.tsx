@@ -83,7 +83,7 @@ export const SearchBox = (props: Props) => {
 
     return(
         <Popup open={showSearch} closeOnDocumentClick={false} contentStyle={{height: '100%', width: '100%', display: 'flex'}} repositionOnResize={true}>
-            <div className="text-white h-auto w-72 px-5 my-auto mx-auto shadow-2xl rounded-xl bg-slate-800 z-30 lg:hidden overflow-auto self-center">
+            <div className="text-white h-11/12 w-72 px-5 my-auto mx-auto shadow-2xl rounded-xl bg-slate-800 z-30 lg:hidden overflow-auto self-center">
                 <h4 className='p-4 focus:outline-none font-medium text-center'>Search by Ingredients <i className="fa fa-close relative left-10" onClick={() => setShow(false)}></i></h4>
                 <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-10 my-2 bg-slate-600" />
                 <div className="h-80 w-full mb-2 bg-slate-600 overflow-auto">
