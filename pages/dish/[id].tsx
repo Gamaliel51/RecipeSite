@@ -49,7 +49,7 @@ export default function DishEx(props: any){
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/crown.png" />
             </Head>
-            <main className="h-auto min-h-screen w-full bg-diner overflow-auto">
+            <main className="h-auto min-h-screen w-full bg-diner overflow-hidden">
                 <div className="h-full min-h-screen w-10/12 mx-auto flex flex-col bg-slate-800">
                     <section className="h-96 w-4/5 lg:w-4/5 mx-auto flex flex-row relative">
                         <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
@@ -68,7 +68,7 @@ export default function DishEx(props: any){
                             })}
                         </section>
                         <div className="h-full mx-5">
-                            <iframe srcDoc={procedure} className="w-full h-full overflow-hidden"></iframe>
+                            <iframe srcDoc={procedure} className="w-full h-full"></iframe>
                         </div>
                     </section>
                     <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
