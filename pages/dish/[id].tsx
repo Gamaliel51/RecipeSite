@@ -50,7 +50,7 @@ export default function DishEx(props: any){
                 <link rel="icon" href="/crown.png" />
             </Head>
             <main className="h-auto min-h-screen w-full bg-diner">
-                <div className="h-screen lg:h-full md:h-screen sm:h-screen w-10/12 mx-auto flex flex-col bg-slate-800">
+                <div className="h-full min-h-screen w-10/12 mx-auto flex flex-col bg-slate-800">
                     <section className="h-96 w-4/5 lg:w-4/5 mx-auto flex flex-row relative">
                         <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
                         <section className="lg:basis-1/2 h-full w-full lg:w-0 flex items-center relative">
