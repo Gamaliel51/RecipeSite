@@ -61,7 +61,7 @@ export default function DishEx(props: any){
                         </section>
                         <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
                     </section>
-                    <section className="h-screen w-4/5 lg:w-4/5 mx-auto bg-white text-black">
+                    <section className="h-screen w-4/5 lg:w-4/5 mx-auto bg-slate-700 text-white py-5 px-2">
                         <section className="w-full h-16 overflow-y-hidden overflow-x-auto flex flex-row bg-white text-black">
                             Ingredients: {info.ingredients.map((item) => {
                                 return `${item}, `
