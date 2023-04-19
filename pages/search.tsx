@@ -42,10 +42,10 @@ export default function SearchPage(props: any){
     const search = (e: any) => {
         setSinput(e.target.value)
         if(e.target.value !== ''){
-          let temp = []
-          temp = ingList.filter((item) => item.includes(e.target.value))
-          setCurList(temp)
-          return
+            let temp = []
+            temp = ingList.filter((item) => item.toLowerCase().includes(e.target.value.toLowerCase()))
+            setCurList(temp)
+            return
         }
         setCurList(ingList)
         return
