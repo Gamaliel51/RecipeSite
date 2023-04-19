@@ -84,34 +84,34 @@ export const SearchBox = (props: Props) => {
     return(
         <Popup open={showSearch} closeOnDocumentClick={false} contentStyle={{height: '100%', width: '100%', display: 'flex'}} repositionOnResize={true}>
             <div className="text-white h-5/6 w-72 px-5 my-auto mx-auto shadow-2xl rounded-xl bg-slate-800 z-30 lg:hidden overflow-auto self-center">
-                <h4 className='p-4 focus:outline-none font-medium text-center'>Search by Ingredients <i className="fa fa-close relative left-10" onClick={() => setShow(false)}></i></h4>
-                <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-10 my-2 bg-slate-600" />
-                <div className="h-80 w-full mb-2 bg-slate-600 overflow-auto">
+                <h4 className='p-2 focus:outline-none font-medium text-center text-sm'>Search by Ingredients <i className="fa fa-close relative left-10" onClick={() => setShow(false)}></i></h4>
+                <input type="text" placeholder=' Find Ingredient' value={sinput} onChange={search} className="w-full h-6 my-1 bg-slate-600" />
+                <div className="h-60 w-full mb-1 bg-slate-600 overflow-auto">
                 {curList.map((item ,key) => {
                     if(selectedIng.includes(item)){
                     return(
                     <div className="mx-1" key={key}>
                         <label htmlFor={item}>
-                        <input className="mx-1 accent-slate-900" type={'checkbox'} checked name={item} id={item} onClick={handleCheck}/>{item}
+                            <input className="mx-1 accent-slate-900 text-sm" type={'checkbox'} checked name={item} id={item} onClick={handleCheck}/>{item}
                         </label>
                     </div>)
                     }
                     return(
                     <div className="mx-1" key={key}>
-                    <label htmlFor={item}>
-                        <input className="mx-1 accent-slate-900" type={'checkbox'} name={item} id={item} onClick={handleCheck}/>{item}
-                    </label>
+                        <label htmlFor={item}>
+                            <input className="mx-1 accent-slate-900 text-sm" type={'checkbox'} name={item} id={item} onClick={handleCheck}/>{item}
+                        </label>
                     </div>)
                 })}
                 </div>
-                <h4 className="text-lg px-2">Selected: 
-                <span className="text-sm mx-3 italic text-gray-500">{checkedNumber} ingredients selected</span>
+                <h4 className="text-base px-2">Selected: 
+                    <span className="text-sm mx-3 italic text-gray-500">{checkedNumber} ingredients selected</span>
                 </h4>
-                <form className="h-44 w-full flex flex-col" onSubmit={handleSearchSubmit}>
-                <div className="w-full h-28 flex flex-row flex-wrap bg-slate-600 overflow-auto">
+                <form className="h-32 w-full flex flex-col" onSubmit={handleSearchSubmit}>
+                <div className="w-full h-24 flex flex-row flex-wrap bg-slate-600 overflow-auto">
                     {renderSelected(selectedIng)}
                 </div>
-                <button className="h-10 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white" type='submit'>Find Dish</button>
+                <button className="h-8 w-full mt-4 rounded-xl font-medium text-xl hover:scale-105 hover:shadow-2xl duration-500 italic bg-slate-500 text-white" type='submit'>Find Dish</button>
                 </form>
             </div>
             <div className="w-full h-full bg-slate-700 absolute opacity-70"></div>
