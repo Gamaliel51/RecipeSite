@@ -32,7 +32,7 @@ export const SearchBox = (props: Props) => {
         setSinput(e.target.value)
         if(e.target.value !== ''){
             let temp = []
-            temp = ingList.filter((item) => item.includes(e.target.value))
+            temp = ingList.filter((item) => item.toLowerCase().includes(e.target.value.toLowerCase()))
             setCurList(temp)
             return
         }
