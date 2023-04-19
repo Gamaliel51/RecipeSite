@@ -67,8 +67,8 @@ export default function DishEx(props: any){
                                 return `${item}, `
                             })}
                         </section>
-                        <div className="h-full mx-5">
-                            <iframe srcDoc={procedure} className="w-full h-full"></iframe>
+                        <div className="h-full mx-5 overflow-auto">
+                            <iframe srcDoc={procedure} className="w-full h-full overflow-auto"></iframe>
                         </div>
                     </section>
                     <aside className="flex flex-col space-y-2 fixed z-30 right-1 bottom-10">
