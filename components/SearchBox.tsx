@@ -97,7 +97,7 @@ export const SearchBox = (props: Props) => {
                     </div>)
                     }
                     return(
-                    <div className="mx-1" key={key}>
+                    <div className="mx-1 text-sm" key={key}>
                         <label htmlFor={item}>
                             <input className="mx-1 accent-slate-900 text-sm" type={'checkbox'} name={item} id={item} onClick={handleCheck}/>{item}
                         </label>
