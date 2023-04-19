@@ -120,7 +120,7 @@ export default function Home(props: any) {
         <meta name="description" content="Discover New Dishes From All Over The World" />
         <meta name="keywords" content="recipe, kings, recipe kings, recipekings, us, recipe, king, recipeking, recipes, all cultures" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+        <link rel="icon" href="/crown.png" />
       </Head>
       <main className='h-auto w-auto bg-white'>
         <SearchBox showSearch={searchPopupDisp} setShow={setDisp} ing={ingredients}/>

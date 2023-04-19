@@ -96,7 +96,7 @@ export default function SearchPage(props: any){
                     <meta name="description" content="Find any dish by ingredients" />
                     <meta name="keywords" content="find, search, recipe, kings, recipe kings, recipekings, us" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                    <link rel="icon" href="/crown.png" />
                 </Head>
                 <main className="h-screen w-full bg-diner flex">
                     <SearchBox showSearch={searchPopupDisp} setShow={setDisp} ing={ingredients}/>
@@ -171,7 +171,7 @@ export default function SearchPage(props: any){
                 <meta name="description" content="Find any dish by ingredients" />
                 <meta name="keywords" content="find, search, recipe, kings, recipe kings, recipekings, us" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                <link rel="icon" href="/crown.png" />
             </Head>
             <main className="h-auto min-h-screen w-full bg-diner">
                 <SearchBox showSearch={searchPopupDisp} setShow={setDisp} ing={ingredients}/>

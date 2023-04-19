@@ -32,7 +32,7 @@ export default function Report(){
                     <meta name="description" content="Make a report about a probem on the website" />
                     <meta name="keywords" content="report, recipe, kings, recipe kings, recipekings, us" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                    <link rel="icon" href="/crown.png" />
                 </Head>
                 <div className="h-screen w-full bg-diner">
                     <div className="w-11/12 lg:w-1/2 h-3/4 mx-auto relative top-20 text-center bg-white">
@@ -72,7 +72,7 @@ export default function Report(){
                     <meta name="description" content="Make a report about a probem on the website" />
                     <meta name="keywords" content="report, recipe, kings, recipe kings, recipekings, us" />
                     <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                    <link rel="icon" href="/crown.png" />
                 </Head>
                 <div className="h-screen w-full bg-diner">
                     <div className="w-11/12 lg:w-1/2 h-3/4 mx-auto relative top-20 text-center bg-white">
@@ -111,7 +111,7 @@ export default function Report(){
                 <meta name="description" content="Make a report about a probem on the website" />
                 <meta name="keywords" content="report, recipe, kings, recipe kings, recipekings, us" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                <link rel="icon" href="/crown.png" />
             </Head>
             <main className="h-auto w-full min-h-screen flex bg-diner">
                 <form action="/api/reportDish" method="post" onSubmit={handleSubmit} className="h-96 w-11/12 lg:w-2/5 m-auto bg-white flex flex-col rounded-md">

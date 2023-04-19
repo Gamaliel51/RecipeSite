@@ -24,7 +24,7 @@ export default function About(){
                 <meta name="description" content="what recipe kings are all about" />
                 <meta name="keywords" content="about, recipe, kings, recipe kings, recipekings, us" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="https://www.flaticon.com/free-icons/crown" />
+                <link rel="icon" href="/crown.png" />
             </Head>
             <main className="h-auto w-full min-h-screen bg-slate-800">
                 <nav className="w-3/4 h-28 mx-auto bg-slate-500 cursor-pointer" onClick={redirectHome}>
