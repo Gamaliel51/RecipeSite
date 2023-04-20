@@ -49,7 +49,7 @@ export default function DishEx(props: any){
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/crown.png" />
             </Head>
-            <main className="h-auto min-h-screen w-full bg-diner overflow-hidden">
+            <main className="h-auto min-h-screen w-full bg-diner overflow-auto">
                 <div className="h-full min-h-screen w-10/12 mx-auto flex flex-col bg-slate-800">
                     <section className="h-96 w-4/5 lg:w-4/5 mx-auto flex flex-row relative">
                         <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
@@ -61,13 +61,13 @@ export default function DishEx(props: any){
                         </section>
                         <section className="lg:basis-1/4 lg:blur-md hidden lg:inline bg-fixed" style={{backgroundImage: `url(${link})`}}></section>
                     </section>
-                    <section className="h-screen w-4/5 lg:w-4/5 mx-auto bg-white text-black">
+                    <section className="min-h-screen w-4/5 lg:w-4/5 mx-auto bg-white text-black overflow-auto">
                         <section className="w-full h-16 overflow-y-hidden whitespace-nowrap my-5 overflow-x-auto flex flex-row bg-slate-700 text-white py-5 px-2">
                             Ingredients: {info.ingredients.map((item) => {
                                 return `${item}, `
                             })}
                         </section>
-                        <div className="h-full mx-5">
+                        <div className="h-screen mx-5">
                             <iframe srcDoc={procedure} className="w-full h-full"></iframe>
                         </div>
                     </section>
