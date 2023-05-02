@@ -18,7 +18,7 @@ const DishCard: NextPage<Props> = (props) => {
 
     return(
         <Link href={`/dish/${id}`}>
-            <div className="flex flex-col drop-shadow-2xl hover:scale-105 duration-700 cursor-pointer relative ">
+            <div className="flex flex-col max-w-xs drop-shadow-2xl hover:scale-105 duration-700 cursor-pointer relative ">
                 <div className="w-full h-96">
                     <img src={picture}
                     alt="Dish picture" className="w-full h-full rounded-lg"/>
